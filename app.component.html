@@ -1,0 +1,18 @@
+<div id="form">
+<form #fup="ngForm">
+  <h1 id="header">Activity Tracker</h1>
+  <input type="text" class="form-control" name="Activity" placeholder="Please Enter Activity" [(ngModel)]="Activity" id="input_Activity">
+  <br><br>
+  <div id="button1">
+  <button (click)="onclick(fup.value)" class="go">Submit</button>
+  <button (click)="reset()" class="go">Reset</button> 
+  </div>
+</form>
+<div *ngIf="list.length>0">
+<div *ngFor="let i of list ;let index=index" class="disp">
+  <div *ngIf="i.checked ; then thenBlock else elseBlock " class="disp"></div>
+<ng-template #thenBlock><table><div style="color: rgb(28, 139, 0);font-size: 15px;text-decoration:line-through;" class="disp"><tr><h3 class="disp">{{i.Activity+ "      "}}</h3></tr><tr><input class="disp" type="checkbox" class="form-control" name="checked" [(ngModel)]="i.checked"></tr><tr><button class="disp" (click)=delete(index)>Delete</button></tr></div></table></ng-template>
+<ng-template #elseBlock><table><div style="color: red;font-size: 15px;" class="disp"><tr><h3 class="disp">{{i.Activity+ "      "}}</h3></tr><tr><input class="disp" type="checkbox" class="form-control" name="checked" [(ngModel)]="i.checked"></tr><tr><button class="disp" (click)=delete(index)>Delete</button></tr></div></table></ng-template>
+</div>    
+</div>
+</div>
